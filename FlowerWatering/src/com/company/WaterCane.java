@@ -18,17 +18,14 @@ public class WaterCane {
 
     private boolean water = false;
     Random random = new Random();
-    int capacity = 22;
+    public static final int capacity = 22;
     private int waterCaneCapacity = random.nextInt(capacity);
-
-
     public boolean setWater() {
         return water;
     }
 
-
     public int isWatering() {
-        if (water = true) {
+        if (water == true) {
             while (waterCaneCapacity != 0) {
                 waterCaneCapacity = waterCaneCapacity - 1;
                 System.out.println(waterCaneCapacity);
