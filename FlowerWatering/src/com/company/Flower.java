@@ -4,13 +4,13 @@ package com.company;
  * Created by admin on 26.02.2017.
  */
 public class Flower {
-    private boolean isWatered;
+String flowerFeelsGood =  "YEAH!!! Flower feels good";
+    public boolean Watered() {
 
-    public boolean isWarered() {
-
-        System.out.println(" YEAH!!! Flower feels good");
+        System.out.println(flowerFeelsGood);
 
         return isWatered;
 
     }
+    private boolean isWatered;
 }
