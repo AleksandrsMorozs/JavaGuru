@@ -5,6 +5,7 @@ package com.company;
  */
 public class Flower {
 String flowerFeelsGood =  "YEAH!!! Flower feels good";
+    private boolean isWatered;
     public boolean Watered() {
 
         System.out.println(flowerFeelsGood);
@@ -12,5 +13,5 @@ String flowerFeelsGood =  "YEAH!!! Flower feels good";
         return isWatered;
 
     }
-    private boolean isWatered;
+
 }

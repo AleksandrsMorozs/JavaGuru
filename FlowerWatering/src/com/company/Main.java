@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        boolean waterCane = new WaterCane(true,22,);
+        boolean waterCane = new WaterCane(true, 22,);
         Random random = new Random();
         Flower flower = new Flower();
         Human human = new Human();
@@ -18,7 +18,7 @@ public class Main {
         String input = scaner.nextLine();
         if (input.equals("ok")) {
             waterCaneFillUpPermission = true;
-            System.out.println("The water Cane is filled up to " + WaterCane.get + " L");
+            System.out.println("The water Cane is filled up to " + WaterCane. + " L");
         } else {
             System.out.println("Flower is dieing, I should water it");
             System.out.println("Should I fill the water cane?");
@@ -31,7 +31,7 @@ public class Main {
             human.setTakeWaterCane(true);
             human.isWatering();
             waterCane = (true, 22)
-            waterCane.Watering();
+            waterCane.watering();
             flower.Watered();
         } else {
             System.out.println("Flower is dieing, I will water it");
