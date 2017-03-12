@@ -1,27 +1,21 @@
 package com.company;
 
-import java.util.Random;
-import java.util.Scanner;
-
-/**
- * Created by admin on 26.02.2017.
- */
 public class Human {
-    private boolean takeWaterCane;
+    private boolean WaterCane;
 
-    public boolean isWatering() {
-        if (takeWaterCane == true) {
-            System.out.println(" I am watering the flower");
+    public boolean waterThePlant() {
+        if (WaterCane == true) {
+            System.out.println(" I am watering the flower ");
         } else {
-            System.out.println("I can't water flower without water cane");
+            System.out.println(" I can't water flower without water cane ");
+            System.out.println(" Should i take it? ");
 
         }
-        return takeWaterCane;
-    }
-
-    public void setTakeWaterCane(Boolean takeWaterCane) {
-        this.takeWaterCane = takeWaterCane;
+        return WaterCane;
     }
 
 
+    public void setWaterCane(boolean waterCane) {
+        this.WaterCane = waterCane;
+    }
 }
