@@ -11,3 +11,4 @@ public class Main {
         field.setA(7);
     }
 }
+

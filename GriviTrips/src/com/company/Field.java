@@ -35,7 +35,6 @@ public class Field {
         System.out.println(chosenColumn + "@@@");
         System.out.println(a);
         if (chosenColumn == 1) {
-            field[7][6] = X;
            /* for (int i = 1; i < ROWS; i++) {
                 System.out.print(i + " ");
             }
