@@ -3,6 +3,7 @@ package com.company;
 
 import java.util.Scanner;
 
+
 public class Game {
     Field field = new Field();
 
@@ -13,26 +14,20 @@ public class Game {
     String input;
     int chosen;
 
-
-
     public int gamePlay() {
-        System.out.println("Player 1, it's your turn!");
-        System.out.println("Put your chip in any free column");
-        System.out.println("choose your column, from 1 to 6!");
-        input = scanner.nextLine();
-        chosen = Integer.parseInt(input);
-        field.setChosenColumn(chosen);
-        System.out.println(chosen + "!!!");
+
 
         return chosen;
     }
 
-
+    public Game(Field field) {
+        this.field = field;
     }
+}
 //if (turn = false) {
-           // System.out.println("Player 1, it's your turn!");
-            //System.out.println("Put your chip in any free column");
-            //System.out.println("choose your column, from 1 to 6!");
+// System.out.println("Player 1, it's your turn!");
+//System.out.println("Put your chip in any free column");
+//System.out.println("choose your column, from 1 to 6!");
 
 
 
