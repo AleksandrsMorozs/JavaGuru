@@ -83,7 +83,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/company/Sum.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -110,11 +110,11 @@
         <option value="$PROJECT_DIR$/src/com/company/arrayRandom.java" />
         <option value="$PROJECT_DIR$/src/Array.java" />
         <option value="$PROJECT_DIR$/src/com/company/ArrayRandom.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Sum.java" />
         <option value="$PROJECT_DIR$/src/com/company/CountUncountNumbers.java" />
         <option value="$PROJECT_DIR$/src/com/company/Arayy.java" />
         <option value="$PROJECT_DIR$/src/com/company/BiggestNumber.java" />
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Sum.java" />
       </list>
     </option>
   </component>
@@ -654,7 +654,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/company/Sum.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
           <folding />
         </state>
       </provider>

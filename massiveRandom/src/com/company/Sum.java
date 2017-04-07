@@ -8,7 +8,7 @@ public class Sum extends Arayy {
 
     public void sum() {
 
-        for (i = 0; i < I; i++)
+        for (   i = 0; i < I; i++)
             arraySum = arraySum + nums[i];
         System.out.println("Sum of the array is : " + arraySum);
     }

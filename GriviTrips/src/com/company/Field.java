@@ -10,6 +10,8 @@ public class Field {
     public static final int COLUMNS = 6;
     public char[][] field = new char[ROWS][COLUMNS];
     private int chosenColumn;
+    private int columnNumber;
+    private boolean columnFull;
 
     public void drawEmptyField() {
         for (int i = 1; i < ROWS; i++) {
@@ -25,25 +27,39 @@ public class Field {
         }
     }
 
-    public int chipPlacing() {
+    public int chipPlacingP1() {
+        columnNumber = chosenColumn;
         //System.out.println(chosenColumn + "@@@");
+        //System.out.println(columnNumber + "###");
+        if (columnCounter[columnNumber - 1] < 7) {
+            columnFull = false;
+        } else {
+            columnFull = true;
+            System.out.println(columnFull + "fieldFull" );
+        }
 
-        if (chosenColumn == 1) {
-            columnCounter[0] = columnCounter[0] + 1;
-            System.out.println(columnCounter[0] + " columncounter");
+        if (chosenColumn == columnNumber) {
+            if (columnFull == false) {
+                columnCounter[columnNumber - 1] = columnCounter[columnNumber - 1] + 1;
 
-            //System.out.println("The chosen column " + chosenColumn + " is full, please chose another column");
 
-            field[ROWS - columnCounter[0]][0] = X;
-            for (int i = 1; i < ROWS; i++) {
-                System.out.print(i + " ");
-            }
-            System.out.println();
-            for (int rows = 0; rows < ROWS; rows++) {
-                for (int columns = 0; columns < COLUMNS; columns++) {
-                    System.out.print(field[rows][columns] + " ");
+                System.out.println(columnCounter[columnNumber - 1] + " columncounter");
+
+                //System.out.println("The chosen column " + chosenColumn + " is full, please chose another column");
+
+                field[ROWS - columnCounter[columnNumber - 1]][chosenColumn - 1] = X;
+                for (int i = 1; i < ROWS; i++) {
+                    System.out.print(i + " ");
                 }
                 System.out.println();
+                for (int rows = 0; rows < ROWS; rows++) {
+                    for (int columns = 0; columns < COLUMNS; columns++) {
+                        System.out.print(field[rows][columns] + " ");
+                    }
+                    System.out.println();
+                }
+            } else {
+                System.out.println("The chosen column " + chosenColumn + " is full, please chose another column");
             }
         }
 
@@ -51,12 +67,49 @@ public class Field {
         return chosenColumn;
     }
 
+    public int chipPlacingP2() {
+        columnNumber = chosenColumn;
+        //System.out.println(chosenColumn + "@@@");
+        if (columnCounter[columnNumber - 1] < 7) {
+            columnFull = false;
+        } else {
+            columnFull = true;
+           System.out.println(columnFull + "fieldFull");
+        }
+
+        if (chosenColumn == columnNumber) {
+            if (columnFull == false) {
+                columnCounter[columnNumber - 1] = columnCounter[columnNumber - 1] + 1;
+
+                //System.out.println(columnCounter[columnNumber - 1] + " columncounter");
+
+                field[ROWS - columnCounter[columnNumber - 1]][chosenColumn - 1] = O;
+                for (int i = 1; i < ROWS; i++) {
+                    System.out.print(i + " ");
+                }
+                System.out.println();
+                for (int rows = 0; rows < ROWS; rows++) {
+                    for (int columns = 0; columns < COLUMNS; columns++) {
+                        System.out.print(field[rows][columns] + " ");
+                    }
+                    System.out.println();
+                }
+            } else {
+                System.out.println("The chosen column " + chosenColumn + " is full, please chose another column");
+            }
+
+
+        }
+        return chosenColumn;
+    }
 
     public void setChosenColumn(int chosenColumn) {
         this.chosenColumn = chosenColumn;
     }
 
-
+    public boolean isColumnFull() {
+        return columnFull;
+    }
 }
 
 
