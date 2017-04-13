@@ -3,35 +3,29 @@ package com.company;
 
 import java.util.Scanner;
 
-public class Player2  {
+public class Player2 {
 
-        Scanner scanner = new Scanner(System.in);
-        public String input;
-        public int chosen;
-        private boolean turn;
-        Field field;
+    Scanner scanner = new Scanner(System.in);
+    private String input;
+    private  int chosen;
+    Field field;
 
-        public int turn() {
+    public int turn() {
 
-                System.out.println("Next player make your turn!");
-                System.out.println("Put your chip in any free column");
-                System.out.println("choose your column, from 1 to 6!");
-                input = scanner.nextLine();
-                chosen = Integer.parseInt(input);
-                field.setChosenColumn(chosen);
+        System.out.println("2nd player make your turn!");
+        System.out.println("Put your chip in any free column");
+        System.out.println("choose your column, from 1 to 6!");
+        input = scanner.nextLine();
+        chosen = Integer.parseInt(input);
+        field.setChosenColumn(chosen);
 
-                System.out.println(turn);
-                // }
-            return chosen;
-            }
+        return chosen;
+    }
 
 
-        public Player2(Field field) {
-            this.field = field;
+    public Player2(Field field) {
+        this.field = field;
 
-        }
-
-    public boolean isTurn() {
-        return turn;
     }
 }
+
