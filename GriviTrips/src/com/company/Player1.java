@@ -6,7 +6,7 @@ public class Player1 {
     Scanner scanner = new Scanner(System.in);
     private String input;
     private int chosen;
-    Field field;
+    private Field field;
 
     public void turn() {
         System.out.println("1st player make your turn!");

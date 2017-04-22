@@ -1,10 +1,10 @@
 package com.company;
 
 public class Game {
-    Field field;
-    Player1 player1;
-    Player2 player2;
-    PlayerPC playerPC;
+    private Field field;
+    private Player1 player1;
+    private Player2 player2;
+    private PlayerPC playerPC;
     private boolean turn;
     private boolean winner;
     private char player;

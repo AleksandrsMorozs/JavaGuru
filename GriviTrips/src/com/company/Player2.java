@@ -7,7 +7,7 @@ public class Player2 {
     Scanner scanner = new Scanner(System.in);
     private String input;
     private int chosen;
-    Field field;
+    private Field field;
 
     public void turn() {
 
