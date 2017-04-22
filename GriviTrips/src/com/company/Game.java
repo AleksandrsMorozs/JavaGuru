@@ -4,44 +4,90 @@ public class Game {
     Field field;
     Player1 player1;
     Player2 player2;
+    PlayerPC playerPC;
     private boolean turn;
     private boolean winner;
+    private char player;
 
-
-    public void gamePlay() {
-        do {
+    public void player1VsPlayer2() {
+        field.drawEmptyField();
+        while (winner == false) {
             if (turn == false) {
+                player = field.PLAYER1;
                 player1.turn();
-                field.columnFullChecking();
-                if (field.isFullToGame() == !true) {
-                    field.chipPlacingP1();
-                    field.columnFullChecking();
+                if (field.columnFullChecking() == false) {
+                    field.puttingTheChip(player);
+                    winner = field.winnerCheck(player);
+                    if (winner == true) {
+                        System.out.println(" 1st player is game winner !!!!");
+                    }
                     turn = !turn;
                 } else {
                     field.columnFullChecking();
-
-                    field.chipPlacingP1();
+                    field.puttingTheChip(player);
                 }
             } else {
+                player = field.PLAYER2;
                 player2.turn();
-                field.columnFullChecking();
-                if (field.isFullToGame() == !true) {
-                    field.chipPlacingP2();
-                    field.columnFullChecking();
+                if (field.columnFullChecking() == false) {
+                    field.puttingTheChip(player);
+                    winner = field.winnerCheck(player);
+                    if (winner == true) {
+                        System.out.println(" 2nd player is game winner !!!!");
+                    }
                     turn = !turn;
                 } else {
                     field.columnFullChecking();
-                    field.chipPlacingP2();
+                    field.puttingTheChip(player);
                 }
             }
         }
-        while (winner == false);
+
     }
 
-    public Game(Player1 player1, Player2 player2, Field field) {
+
+    public void player1VsPc() {
+        field.drawEmptyField();
+        while (winner == false) {
+            if (turn == false) {
+                player = field.PLAYER1;
+                player1.turn();
+                if (field.columnFullChecking() == false) {
+                    field.puttingTheChip(player);
+                    winner = field.winnerCheck(player);
+                    if (winner == true) {
+                        System.out.println(" 1st player is game winner !!!!");
+                    }
+                    turn = !turn;
+                } else {
+                    field.columnFullChecking();
+                    field.puttingTheChip(player);
+                }
+            } else {
+                player = field.PLAYER2;
+                playerPC.turn();
+                if (field.columnFullChecking() == false) {
+                    field.puttingTheChip(player);
+                    winner = field.winnerCheck(player);
+                    if (winner == true) {
+                        System.out.println(" PC is game winner !!!!");
+                    }
+                    turn = !turn;
+                } else {
+                    field.columnFullChecking();
+                    field.puttingTheChip(player);
+                }
+            }
+        }
+
+    }
+
+
+    public Game(Player1 player1, Player2 player2, PlayerPC playerPC, Field field) {
         this.player1 = player1;
         this.player2 = player2;
         this.field = field;
+        this.playerPC = playerPC;
     }
 
 }
