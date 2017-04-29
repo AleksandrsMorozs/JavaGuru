@@ -11,7 +11,7 @@ public class Main {
         Game game = new Game(player1, player2, playerPC, field);
         //GriviTripsTest test = new GriviTripsTest(field);
         game.player1VsPlayer2();
-        //game.player1VsPc();
+       // game.player1VsPc();
 
     }
 }

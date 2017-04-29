@@ -9,16 +9,16 @@ public class Field {
     public static final char PLAYER2 = 'O';
     private static final char TOWIN = 4;
     private char empty = '.';
-    private int[] columnCounter = new int[COLUMNS];
     private static final int ROWS = 6;
     private static final int COLUMNS = 7;
     private int toWin;
     private char[][] field = new char[ROWS][COLUMNS];
-    private int chosenColumn;
     private int columnNumber;
-    private boolean[] columnFull = new boolean[COLUMNS];
     private boolean winner;
     private boolean fullToGame;
+    private int columnToPutt;
+    private int toBeFull;
+    private int whereToPutChip;
 
     public void drawEmptyField() {
 
@@ -50,33 +50,49 @@ public class Field {
     }
 
 
-    public void puttingTheChip(char player) {
-        chosenColumn = columnNumber - 1;
-        if (columnFull[chosenColumn] == false) {
-            columnCounter[chosenColumn] = columnCounter[chosenColumn] + 1;
-            //field[5][1]=player;
-            field[ROWS - columnCounter[chosenColumn]][chosenColumn] = player;
-            fieldPrint();
-        } else {
-            System.out.println("The column " + (chosenColumn + 1) + " is full ");
-            System.out.println("chose another column!!!");
+    public boolean columnFullChecking() {
+        columnToPutt = columnNumber - 1;
+        toBeFull = 0;
+        if (columnToPutt > COLUMNS) {
+            System.out.println("This column doesn't exist");
         }
+        fullToGame = false;
+        for (int rows = 0; rows < ROWS; rows++) {
+            if (columnToPutt < ROWS) {
+                if (field[rows][columnToPutt] != empty) {
+                    toBeFull++;
+                    setWhereToPutChip(toBeFull);
+
+                    if (toBeFull != 6) {
+                        fullToGame = false;
+                    } else {
+                        fullToGame = true;
+                    }
+                }
+            }
+        }
+        setWhereToPutChip(toBeFull);
+        //System.out.println(columnToPutt + " !!!");
+        //System.out.println(toBeFull + " @@@");
+        //System.out.println(fullToGame + " zzz");
+        return fullToGame;
     }
 
 
-    public boolean columnFullChecking() {
-        chosenColumn = columnNumber - 1;
-        if (chosenColumn > COLUMNS) {
-            System.out.println("This column doesn't exist");
-        }
-        if (columnCounter[chosenColumn] < ROWS) {
-            columnFull[chosenColumn] = false;
-            fullToGame = columnFull[chosenColumn];
+    public void puttingTheChip(char player) {
+
+        columnFullChecking();
+        if (fullToGame == false) {
+            if (whereToPutChip != 6) {
+                field[(ROWS - 1) - (whereToPutChip)][columnToPutt] = player;
+                //field[4][0] = player;
+                fieldPrint();
+            }
         } else {
-            columnFull[chosenColumn] = true;
-            fullToGame = columnFull[chosenColumn];
+            fieldPrint();
+            System.out.println("The column " + (columnToPutt + 1) + " is full ");
+            System.out.println("chose another column!!!");
         }
-        return fullToGame;
     }
 
 
@@ -197,6 +213,9 @@ public class Field {
         return winner;
     }
 
+    public void setWhereToPutChip(int whereToPutChip) {
+        this.whereToPutChip = whereToPutChip;
+    }
 
     public void setColumnNumber(int columnNumber) {
         this.columnNumber = columnNumber;
