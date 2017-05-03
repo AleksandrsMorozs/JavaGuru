@@ -4,93 +4,133 @@ public class Game {
     private Field field;
     private Player1 player1;
     private Player2 player2;
-    private PlayerPC playerPC;
-    private boolean turn;
-    private boolean winner;
-    private char player;
+
+
 
     public void player1VsPlayer2() {
-        field.drawEmptyField();
-        while (winner == false) {
-            if (turn == false) {
-                player = field.PLAYER1;
-                player1.turn();
-                if (field.columnFullChecking() == false) {
-                    field.puttingTheChip(player);
+        boolean fullToGame;
+        int columnToPutt;
+        boolean turn = false;
+        boolean winner = false;
+        char player;
+        boolean playerHaveChosen;
+        int selectedGameMode;
+
+        selectedGameMode = selectGameMode();
+        if (selectedGameMode == 1) {
+            field.drawEmptyField();
+            while (winner == false) {
+
+                if (turn == false) {
+                    playerHaveChosen = player1.turn();
+                    player = PlayersChars(playerHaveChosen);
+                    columnToPutt = PlayerChose(playerHaveChosen);
+                    fullToGame = field.columnFullChecking(columnToPutt - 1);
+                    turn = mainGameplay(fullToGame, columnToPutt, playerHaveChosen, player, turn);
                     winner = field.winnerCheck(player);
                     if (winner == true) {
                         System.out.println(" 1st player is game winner !!!!");
                     }
-                    turn = !turn;
                 } else {
-                    field.columnFullChecking();
-                    field.puttingTheChip(player);
-                }
-            } else {
-                player = field.PLAYER2;
-                player2.turn();
-                if (field.columnFullChecking() == false) {
-                    field.puttingTheChip(player);
+                    playerHaveChosen = player2.turn();
+                    player = PlayersChars(playerHaveChosen);
+                    columnToPutt = PlayerChose(playerHaveChosen);
+                    fullToGame = field.columnFullChecking(columnToPutt - 1);
+                    turn = mainGameplay(fullToGame, columnToPutt, playerHaveChosen, player, turn);
                     winner = field.winnerCheck(player);
                     if (winner == true) {
                         System.out.println(" 2nd player is game winner !!!!");
                     }
-                    turn = !turn;
-                } else {
-                    field.columnFullChecking();
-                    field.puttingTheChip(player);
+
                 }
             }
-        }
-
-    }
-
-
-    public void player1VsPc() {
-        field.drawEmptyField();
-        while (winner == false) {
-            if (turn == false) {
-                player = field.PLAYER1;
-                player1.turn();
-                if (field.columnFullChecking() == false) {
-                    field.puttingTheChip(player);
+        } else {
+            field.drawEmptyField();
+            while (winner == false) {
+                if (turn == false) {
+                    playerHaveChosen = player1.turn();
+                    player = PlayersChars(playerHaveChosen);
+                    columnToPutt = PlayerChose(playerHaveChosen);
+                    fullToGame = field.columnFullChecking(columnToPutt - 1);
+                    turn = mainGameplay(fullToGame, columnToPutt, playerHaveChosen, player, turn);
                     winner = field.winnerCheck(player);
                     if (winner == true) {
                         System.out.println(" 1st player is game winner !!!!");
                     }
-                    turn = !turn;
                 } else {
-                    field.columnFullChecking();
-                    field.puttingTheChip(player);
-                }
-            } else {
-                player = field.PLAYER2;
-                playerPC.turn();
-                if (field.columnFullChecking() == false) {
-                    field.puttingTheChip(player);
+                    playerHaveChosen = player2.turnPC();
+                    player = PlayersChars(playerHaveChosen);
+                    columnToPutt = PlayerChose(playerHaveChosen);
+                    fullToGame = field.columnFullChecking(columnToPutt - 1);
+                    turn = mainGameplay(fullToGame, columnToPutt, playerHaveChosen, player, turn);
                     winner = field.winnerCheck(player);
                     if (winner == true) {
                         System.out.println(" PC is game winner !!!!");
                     }
-                    turn = !turn;
-                } else {
-                    field.columnFullChecking();
-                    field.puttingTheChip(player);
+
                 }
             }
         }
+    }
+
+    public int selectGameMode() {
+        int selectedGameMode;
+        selectedGameMode = player2.gameSelection();
+        return selectedGameMode;
+    }
+
+    public char PlayersChars(boolean playerHaveChosen) {
+        char playersChar;
+        if (playerHaveChosen == true) {
+            playersChar = field.PLAYER1;
+
+        } else {
+            playersChar = field.PLAYER2;
+        }
+
+        return playersChar;
 
     }
 
 
-    public Game(Player1 player1, Player2 player2, PlayerPC playerPC, Field field) {
+    public int PlayerChose(boolean playerHaveChosen) {
+        int playerChosenNumber = 0;
+
+        if (playerHaveChosen == true) {
+            playerChosenNumber = player1.getChosen();
+        } else {
+            playerChosenNumber = player2.getChosen();
+        }
+
+
+        return playerChosenNumber;
+    }
+
+    public boolean mainGameplay(boolean fullToGame, int columnToPutt, boolean playerHaveChosen, char player, boolean turn) {
+        if (fullToGame == false) {
+            columnToPutt = PlayerChose(playerHaveChosen);
+            field.puttingTheChip(player, columnToPutt - 1);
+            turn = !turn;
+        } else {
+            field.puttingTheChip(player, columnToPutt - 1);
+        }
+        return turn;
+    }
+
+
+
+
+    public Game(Player1 player1, Player2 player2, Field field) {
         this.player1 = player1;
         this.player2 = player2;
         this.field = field;
-        this.playerPC = playerPC;
-    }
 
+    }
 }
+
+
+
+
 
 
 
