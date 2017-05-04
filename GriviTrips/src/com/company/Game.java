@@ -6,8 +6,7 @@ public class Game {
     private Player2 player2;
 
 
-
-    public void player1VsPlayer2() {
+    public void GriviTripsGame() {
         boolean fullToGame;
         int columnToPutt;
         boolean turn = false;
@@ -73,13 +72,13 @@ public class Game {
         }
     }
 
-    public int selectGameMode() {
+    private int selectGameMode() {
         int selectedGameMode;
         selectedGameMode = player2.gameSelection();
         return selectedGameMode;
     }
 
-    public char PlayersChars(boolean playerHaveChosen) {
+    private char PlayersChars(boolean playerHaveChosen) {
         char playersChar;
         if (playerHaveChosen == true) {
             playersChar = field.PLAYER1;
@@ -93,8 +92,8 @@ public class Game {
     }
 
 
-    public int PlayerChose(boolean playerHaveChosen) {
-        int playerChosenNumber = 0;
+    private int PlayerChose(boolean playerHaveChosen) {
+        int playerChosenNumber;
 
         if (playerHaveChosen == true) {
             playerChosenNumber = player1.getChosen();
@@ -106,7 +105,7 @@ public class Game {
         return playerChosenNumber;
     }
 
-    public boolean mainGameplay(boolean fullToGame, int columnToPutt, boolean playerHaveChosen, char player, boolean turn) {
+    private boolean mainGameplay(boolean fullToGame, int columnToPutt, boolean playerHaveChosen, char player, boolean turn) {
         if (fullToGame == false) {
             columnToPutt = PlayerChose(playerHaveChosen);
             field.puttingTheChip(player, columnToPutt - 1);
@@ -116,8 +115,6 @@ public class Game {
         }
         return turn;
     }
-
-
 
 
     public Game(Player1 player1, Player2 player2, Field field) {

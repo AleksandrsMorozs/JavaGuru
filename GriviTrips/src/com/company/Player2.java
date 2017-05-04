@@ -17,7 +17,11 @@ public class Player2 {
         System.out.println("Put your chip in any free column");
         System.out.println("choose your column, from 1 to 7!");
         input = scanner.nextLine();
-        chosen = Integer.parseInt(input);
+        while (checkInputBoundsInt(input, '1', '7') == false) {
+            System.out.println("Try again");
+            input = scanner.nextLine();
+        }
+        chosen = (int) input.charAt(0) - 48; // Char to Int
         chosenIsTrue = false;
         return chosenIsTrue;
     }
@@ -31,23 +35,35 @@ public class Player2 {
         return chosenIsTrue;
     }
 
-    public int gameSelection(){
+    private boolean checkInputBoundsInt(String input, char lowerBound, char upperBound) {
+        boolean integerBounds = false;
+        if ((input.length() > 0) && (int) input.charAt(0) >= (int) lowerBound && (int) input.charAt(0) <= (int) upperBound) {
+            integerBounds = true;
+        }
+        return integerBounds;
+    }
+
+
+    public int gameSelection() {
         String input;
         System.out.println("  --== Grivi Trips ==--  ");
         System.out.println("Select 1 to play with with Player");
         System.out.println("Select 2 to play with with PC");
         input = scanner.nextLine();
-        chosen = Integer.parseInt(input);
-
+        while (checkInputBoundsInt(input, '1', '2') == false) {
+            System.out.println("Try again");
+            input = scanner.nextLine();
+        }
+        chosen = (int) input.charAt(0) - 48;
         return chosen;
     }
-
 
 
     public Player2(Field field) {
         this.field = field;
 
     }
+
     public int getChosen() {
         return chosen;
     }

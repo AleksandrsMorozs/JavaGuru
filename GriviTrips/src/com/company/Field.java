@@ -1,5 +1,7 @@
 package com.company;
 
+import java.lang.reflect.Array;
+
 public class Field {
 
     public static final char PLAYER1 = 'X';
@@ -29,12 +31,13 @@ public class Field {
     }
 
 
-    public void fieldPrint() {
+    private void fieldPrint() {
 
         for (int columns = 0; columns < COLUMNS; columns++) {
             System.out.print((columns + 1) + " ");
         }
         System.out.println();
+
         for (int rows = 0; rows < ROWS; rows++) {
             for (int columns = 0; columns < COLUMNS; columns++) {
                 System.out.print(field[rows][columns] + " ");
@@ -64,7 +67,7 @@ public class Field {
         return fullToGame;
     }
 
-    public boolean fullToChecking(int toBeFull) {
+    private boolean fullToChecking(int toBeFull) {
         boolean fullToGame;
 
         if (toBeFull != 6) {
@@ -73,6 +76,7 @@ public class Field {
             fullToGame = true;
         }
         return fullToGame;
+
     }
 
 
@@ -84,7 +88,6 @@ public class Field {
                 field[(ROWS - 1) - (whereToPutChip)][columnToPutt] = player;
                 //field[4][0] = player;
                 fieldPrint();
-
             }
         } else {
             System.out.println("The column " + (columnToPutt + 1) + " is full ");
@@ -93,7 +96,7 @@ public class Field {
     }
 
 
-    public boolean wonInColumns(char player, boolean winner) {
+    private boolean wonInColumns(char player, boolean winner) {
         for (int columns = 0; columns < COLUMNS; columns++) {
             if (columnCheck(columns, player, winner)) {
                 winner = true;
@@ -102,7 +105,7 @@ public class Field {
         return winner;
     }
 
-    public boolean columnCheck(int columns, char player, boolean winner) {
+    private boolean columnCheck(int columns, char player, boolean winner) {
         int toWin = 0;
 
         for (int rows = 0; rows < ROWS; rows++) {
@@ -119,7 +122,7 @@ public class Field {
     }
 
 
-    public boolean rowCheck(int rows, char player, boolean winner) {
+    private boolean rowCheck(int rows, char player, boolean winner) {
         int toWin = 0;
 
         for (int columns = 0; columns < COLUMNS; columns++) {
@@ -135,7 +138,7 @@ public class Field {
         return winner;
     }
 
-    public boolean wonInRows(char player, boolean winner) {
+    private boolean wonInRows(char player, boolean winner) {
 
         for (int rows = 0; rows < ROWS; rows++) {
             if (rowCheck(rows, player, winner)) {
@@ -145,7 +148,7 @@ public class Field {
         return winner;
     }
 
-    public boolean check1stDiagonal(int rows, char player, boolean winner) {
+    private boolean check1stDiagonal(int rows, char player, boolean winner) {
         int toWin = 0;
 
         for (int columns = 0; columns < COLUMNS; columns++) {
@@ -165,7 +168,7 @@ public class Field {
         return winner;
     }
 
-    public boolean wonIn1stDiagonal(char player, boolean winner) {
+    private boolean wonIn1stDiagonal(char player, boolean winner) {
 
         for (int rows = ROWS - 1; rows > 0; rows--) {
             if (check1stDiagonal(rows, player, winner)) {
@@ -175,7 +178,7 @@ public class Field {
         return winner;
     }
 
-    public boolean check2ndDiagonal(int rows, char player, boolean winner) {
+    private boolean check2ndDiagonal(int rows, char player, boolean winner) {
         int toWin = 0;
 
         for (int columns = COLUMNS - 1; columns > 0; columns--) {
@@ -196,7 +199,7 @@ public class Field {
         return winner;
     }
 
-    public boolean wonIn2ndDiagonal(char player, boolean winner) {
+    private boolean wonIn2ndDiagonal(char player, boolean winner) {
 
         for (int rows = ROWS - 1; rows > 0; rows--) {
             if (check2ndDiagonal(rows, player, winner)) {
@@ -225,45 +228,6 @@ public class Field {
         this.whereToPutChip = whereToPutChip;
     }
 
-
-   /* public boolean columnCheck4test(int columns, char player) {
-         int toWin = 0;
-        for (int rows = 0; rows < ROWS; rows++) {
-            if (field[rows][columns] == player) {
-                toWin++;
-                if (toWin == TOWIN) {
-                    winner = true;
-                }
-            } else {
-                toWin = 0;
-            }
-        }
-        return winner;
-    }
-   public boolean wonInColumns4test(char player, Field field) {
-        for (int columns = 0; columns < COLUMNS; columns++) {
-            if (columnCheck4test(columns, player, field)) {
-                winner = true;
-            }
-        }
-        return winner;
-    }
-
-    public boolean rowCheck4test(int rows, char player, Field field) {
-        toWin = 0;
-        for (int columns = 0; columns < COLUMNS; columns++) {
-            if (field[rows][columns] == player) {
-                toWin++;
-                if (toWin == TOWIN) {
-                    winner = true;
-                    //System.out.println(winner + " 1st player is game winner !!!!");
-                }
-            } else {
-                toWin = 0;
-            }
-        }
-        return winner;
-    }*/
 }
 
 
