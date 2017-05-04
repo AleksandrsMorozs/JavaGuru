@@ -8,7 +8,6 @@ public class Main {
         Player1 player1 = new Player1(field);
         Player2 player2 = new Player2(field);
         Game game = new Game(player1, player2, field);
-        //GriviTripsTest test = new GriviTripsTest(field);
         game.GriviTripsGame();
 
 

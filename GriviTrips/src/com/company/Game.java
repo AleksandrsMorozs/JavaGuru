@@ -100,8 +100,6 @@ public class Game {
         } else {
             playerChosenNumber = player2.getChosen();
         }
-
-
         return playerChosenNumber;
     }
 
@@ -117,7 +115,7 @@ public class Game {
     }
 
 
-    public Game(Player1 player1, Player2 player2, Field field) {
+    public Game( Player1 player1, Player2 player2, Field field) {
         this.player1 = player1;
         this.player2 = player2;
         this.field = field;

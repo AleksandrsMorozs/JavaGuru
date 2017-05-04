@@ -1,17 +1,14 @@
 package com.company;
 
-import java.lang.reflect.Array;
-
 public class Field {
 
     public static final char PLAYER1 = 'X';
     public static final char PLAYER2 = 'O';
     private static final char TOWIN = 4;
-    private char empty = '.';
+    private static final char EMPTY = '.';
     private static final int ROWS = 6;
     private static final int COLUMNS = 7;
     private char[][] field = new char[ROWS][COLUMNS];
-
     private boolean fullToGame;
     private int whereToPutChip;
 
@@ -23,7 +20,7 @@ public class Field {
         System.out.println();
         for (int rows = 0; rows < ROWS; rows++) {
             for (int columns = 0; columns < COLUMNS; columns++) {
-                field[rows][columns] = empty;
+                field[rows][columns] = EMPTY;
                 System.out.print(field[rows][columns] + " ");
             }
             System.out.println();
@@ -55,7 +52,7 @@ public class Field {
         }
         for (int rows = 0; rows < ROWS; rows++) {
             if (columnToPutt < ROWS) {
-                if (field[rows][columnToPutt] != empty) {
+                if (field[rows][columnToPutt] != EMPTY) {
                     toBeFull++;
                     setWhereToPutChip(toBeFull);
                     fullToGame = fullToChecking(toBeFull);
