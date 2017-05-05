@@ -24,8 +24,9 @@ public class Player {
         }
         return integerBounds;
     }
+}
 
-    public int gameSelection() {
+/*    public int gameSelection() {
         String input;
         gameSelectionMesseges();
         input = inputCheck('1', '2');
@@ -39,3 +40,4 @@ public class Player {
         System.out.println("Select 2 to play with with PC");
     }
 }
+*/

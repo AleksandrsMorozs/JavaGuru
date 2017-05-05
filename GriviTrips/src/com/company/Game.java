@@ -2,110 +2,88 @@ package com.company;
 
 public class Game {
     private Field field;
-    private Player1 player1;
-    private Player2 player2;
-
+    private HumanPlayer humanPlayer;
+    private AiPlayer aiPlayer;
+    private static final char FIRSTPLALYER = 1;
+    private static final char SECONDPLAYER = 2;
+    private static final char AI = 3;
 
     public void GriviTripsGame() {
-        boolean fullToGame;
-        int columnToPutt;
         boolean turn = false;
         boolean winner = false;
-        char player;
-        boolean playerHaveChosen;
+        int playerToPlay;
         int selectedGameMode;
+        char player;
 
         selectedGameMode = selectGameMode();
         if (selectedGameMode == 1) {
             field.drawEmptyField();
             while (winner == false) {
-
                 if (turn == false) {
-                    playerHaveChosen = player1.turn();
-                    player = PlayersChars(playerHaveChosen);
-                    columnToPutt = PlayerChose(playerHaveChosen);
-                    fullToGame = field.columnFullChecking(columnToPutt - 1);
-                    turn = mainGameplay(fullToGame, columnToPutt, playerHaveChosen, player, turn);
-                    winner = field.winnerCheck(player);
-                    if (winner == true) {
-                        System.out.println(" 1st player is game winner !!!!");
-                    }
+                    playerToPlay = humanPlayer.playersTurn(FIRSTPLALYER);
+                    turn = turnInGame(playerToPlay, turn);
+                    player = PlayersChars(playerToPlay);
+                    winner = winnerMessege(player, playerToPlay);
                 } else {
-                    playerHaveChosen = player2.turn();
-                    player = PlayersChars(playerHaveChosen);
-                    columnToPutt = PlayerChose(playerHaveChosen);
-                    fullToGame = field.columnFullChecking(columnToPutt - 1);
-                    turn = mainGameplay(fullToGame, columnToPutt, playerHaveChosen, player, turn);
-                    winner = field.winnerCheck(player);
-                    if (winner == true) {
-                        System.out.println(" 2nd player is game winner !!!!");
-                    }
-
+                    playerToPlay = humanPlayer.playersTurn(SECONDPLAYER);
+                    turn = turnInGame(playerToPlay, turn);
+                    player = PlayersChars(playerToPlay);
+                    winner = winnerMessege(player, playerToPlay);
                 }
             }
         } else {
             field.drawEmptyField();
             while (winner == false) {
                 if (turn == false) {
-                    playerHaveChosen = player1.turn();
-                    player = PlayersChars(playerHaveChosen);
-                    columnToPutt = PlayerChose(playerHaveChosen);
-                    fullToGame = field.columnFullChecking(columnToPutt - 1);
-                    turn = mainGameplay(fullToGame, columnToPutt, playerHaveChosen, player, turn);
-                    winner = field.winnerCheck(player);
-                    if (winner == true) {
-                        System.out.println(" 1st player is game winner !!!!");
-                    }
+                    playerToPlay = humanPlayer.playersTurn(FIRSTPLALYER);
+                    turn = turnInGame(playerToPlay, turn);
+                    player = PlayersChars(playerToPlay);
+                    winner = winnerMessege(player, playerToPlay);
                 } else {
-                    playerHaveChosen = player2.turnPC();
-                    player = PlayersChars(playerHaveChosen);
-                    columnToPutt = PlayerChose(playerHaveChosen);
-                    fullToGame = field.columnFullChecking(columnToPutt - 1);
-                    turn = mainGameplay(fullToGame, columnToPutt, playerHaveChosen, player, turn);
-                    winner = field.winnerCheck(player);
-                    if (winner == true) {
-                        System.out.println(" PC is game winner !!!!");
-                    }
-
+                    playerToPlay = aiPlayer.turn();
+                    turn = turnInGame(playerToPlay, turn);
+                    player = PlayersChars(playerToPlay);
+                    winner = winnerMessege(player, playerToPlay);
                 }
             }
         }
     }
 
+
     private int selectGameMode() {
         int selectedGameMode;
-        selectedGameMode = player2.gameSelection();
+        selectedGameMode = humanPlayer.gameSelection();
         return selectedGameMode;
     }
 
-    private char PlayersChars(boolean playerHaveChosen) {
-        char playersChar;
-        if (playerHaveChosen == true) {
+    private char PlayersChars(int player1or2) {
+        char playersChar = 0;
+        if (player1or2 == FIRSTPLALYER) {
             playersChar = field.PLAYER1;
-
-        } else {
+        }
+        if ((player1or2 == SECONDPLAYER) || (player1or2 == AI)) {
             playersChar = field.PLAYER2;
         }
-
         return playersChar;
-
     }
 
 
-    private int PlayerChose(boolean playerHaveChosen) {
+    private int playerChooseTheNumber(int playerToPlay) {
         int playerChosenNumber;
 
-        if (playerHaveChosen == true) {
-            playerChosenNumber = player1.getChosen();
+        if ((playerToPlay == FIRSTPLALYER) || (playerToPlay == SECONDPLAYER)) {
+            playerChosenNumber = humanPlayer.getChosen();
         } else {
-            playerChosenNumber = player2.getChosen();
+            playerChosenNumber = aiPlayer.getChosen();
+
         }
         return playerChosenNumber;
     }
 
-    private boolean mainGameplay(boolean fullToGame, int columnToPutt, boolean playerHaveChosen, char player, boolean turn) {
+    private boolean puttingChipToField(boolean fullToGame, int columnToPutt, int playerHaveChosen, char player, boolean turn) {
+
         if (fullToGame == false) {
-            columnToPutt = PlayerChose(playerHaveChosen);
+            columnToPutt = playerChooseTheNumber(playerHaveChosen);
             field.puttingTheChip(player, columnToPutt - 1);
             turn = !turn;
         } else {
@@ -114,17 +92,50 @@ public class Game {
         return turn;
     }
 
+    public boolean turnInGame(int playerToPlay, boolean turn) {
+        boolean fullToGame;
+        int columnToPutt;
+        char player;
+        columnToPutt = playerChooseTheNumber(playerToPlay);
+        fullToGame = field.columnFullChecking(columnToPutt - 1);
+        player = PlayersChars(playerToPlay);
+        turn = puttingChipToField(fullToGame, columnToPutt, playerToPlay, player, turn);
 
-    public Game( Player1 player1, Player2 player2, Field field) {
-        this.player1 = player1;
-        this.player2 = player2;
+        return turn;
+    }
+
+
+    public boolean winnerMessege(char player, int playerToPlay) {
+        boolean winner;
+
+        winner = field.winnerCheck(player);
+        if (winner == true) {
+            if (playerToPlay == FIRSTPLALYER) {
+                System.out.println(" 1st player is game winner !!!!");
+            }
+            if (playerToPlay == SECONDPLAYER) {
+                System.out.println(" 2nd player is game winner !!!!");
+            }
+        }
+        return winner;
+    }
+
+    private void winnerMessege4FirstPlayer() {
+        System.out.println(" 1st player is game winner !!!!");
+    }
+
+    private void winnerMessege4SecondPlayer() {
+        System.out.println(" 2nd player is game winner !!!!");
+    }
+
+
+    public Game(AiPlayer aiPlayer, HumanPlayer humanPlayer, Field field) {
+        this.aiPlayer = aiPlayer;
+        this.humanPlayer = humanPlayer;
+
         this.field = field;
-
     }
 }
-
-
-
 
 
 

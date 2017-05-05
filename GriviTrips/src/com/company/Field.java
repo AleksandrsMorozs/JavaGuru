@@ -58,7 +58,6 @@ public class Field {
                     fullToGame = fullToChecking(toBeFull);
                 }
             }
-
             setWhereToPutChip(toBeFull);
         }
         return fullToGame;
@@ -67,7 +66,7 @@ public class Field {
     private boolean fullToChecking(int toBeFull) {
         boolean fullToGame;
 
-        if (toBeFull != 6) {
+        if (toBeFull != ROWS) {
             fullToGame = false;
         } else {
             fullToGame = true;
@@ -81,7 +80,7 @@ public class Field {
         fullToGame = false;
 
         if (fullToGame == false) {
-            if (whereToPutChip != 6) {
+            if (whereToPutChip != ROWS) {
                 field[(ROWS - 1) - (whereToPutChip)][columnToPutt] = player;
                 //field[4][0] = player;
                 fieldPrint();
