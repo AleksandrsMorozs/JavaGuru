@@ -1,10 +1,30 @@
 package com.company;
 
+
 import java.util.Scanner;
 
 public class Player {
     Scanner scanner = new Scanner(System.in);
-    private int chosen;
+    public static final char PLAYER1 = 'X';
+    public static final char PLAYER2 = 'O';
+    public int chosenNumber;
+    public char charXorO;
+
+    public void turn(){
+
+    }
+
+    public int playerNumberInMesseges() {
+        int playerNumber;
+
+        if (charXorO == PLAYER1) {
+            playerNumber = 1;
+        } else {
+            playerNumber = 2;
+        }
+        return playerNumber;
+    }
+
 
     public String inputCheck(char lower, char upper) {
         String input;
@@ -16,7 +36,6 @@ public class Player {
         return input;
     }
 
-
     public boolean checkInputBoundsInt(String input, char lowerBound, char upperBound) {
         boolean integerBounds = false;
         if ((input.length() > 0) && (int) input.charAt(0) >= (int) lowerBound && (int) input.charAt(0) <= (int) upperBound) {
@@ -24,20 +43,10 @@ public class Player {
         }
         return integerBounds;
     }
-}
 
-/*    public int gameSelection() {
-        String input;
-        gameSelectionMesseges();
-        input = inputCheck('1', '2');
-        chosen = (int) input.charAt(0) - 48;
-        return chosen;
-    }
-
-    private void gameSelectionMesseges() {
-        System.out.println("  --== Grivi Trips ==--  ");
-        System.out.println("Select 1 to play with with Player");
-        System.out.println("Select 2 to play with with PC");
+    public int getChosenNumber() {
+        return chosenNumber;
     }
 }
-*/
+
+

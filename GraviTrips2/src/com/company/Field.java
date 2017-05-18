@@ -1,15 +1,13 @@
 package com.company;
 
-public class Field {
 
-    public static final char PLAYER1 = 'X';
-    public static final char PLAYER2 = 'O';
+public class Field {
     private static final char TOWIN = 4;
+    private static final char ALLSLOTS = 42;
     private static final char EMPTY = '.';
     private static final int ROWS = 6;
     private static final int COLUMNS = 7;
     private char[][] field = new char[ROWS][COLUMNS];
-    private boolean fullToGame;
     private int whereToPutChip;
 
     public void drawEmptyField() {
@@ -46,12 +44,12 @@ public class Field {
 
     public boolean columnFullChecking(int columnToPutt) {
         int toBeFull = 0;
-
+        boolean fullToGame = false;
         if (columnToPutt > COLUMNS) {
             System.out.println("This column doesn't exist");
         }
         for (int rows = 0; rows < ROWS; rows++) {
-            if (columnToPutt < ROWS) {
+            if (columnToPutt <= ROWS) {
                 if (field[rows][columnToPutt] != EMPTY) {
                     toBeFull++;
                     setWhereToPutChip(toBeFull);
@@ -62,6 +60,24 @@ public class Field {
         }
         return fullToGame;
     }
+
+    public boolean fieldCheckOnDraw () {
+        boolean draw = false;
+        int toBeFull = 0;
+        for (int rows = 0; rows < ROWS; rows++) {
+            for (int columns = 0; columns < COLUMNS; columns++) {
+                if (field[rows][columns] != EMPTY) {
+                    toBeFull++;
+                    if (toBeFull == ALLSLOTS) {
+                        draw = true;
+                    }
+                }
+            }
+        }
+        return draw;
+    }
+
+
 
     private boolean fullToChecking(int toBeFull) {
         boolean fullToGame;
@@ -76,13 +92,13 @@ public class Field {
     }
 
 
-    public void puttingTheChip(char player, int columnToPutt) {
-        fullToGame = false;
+    public void puttingTheChip(char charXorO, int columnToPutt) {
+        boolean fullToGame = columnFullChecking(columnToPutt);
 
-        if (fullToGame == false) {
+        if (!fullToGame) {
             if (whereToPutChip != ROWS) {
-                field[(ROWS - 1) - (whereToPutChip)][columnToPutt] = player;
-                //field[4][0] = player;
+                field[(ROWS - 1) - (whereToPutChip)][columnToPutt] = charXorO;
+                //field[4][0] = charXorO;;
                 fieldPrint();
             }
         } else {
@@ -90,6 +106,7 @@ public class Field {
             System.out.println("chose another column!!!");
         }
     }
+
 
 
     private boolean wonInColumns(char player, boolean winner) {
@@ -190,7 +207,6 @@ public class Field {
             if (toWin == TOWIN) {
                 winner = true;
             }
-
         }
         return winner;
     }
@@ -201,7 +217,6 @@ public class Field {
             if (check2ndDiagonal(rows, player, winner)) {
                 winner = true;
             }
-
         }
         return winner;
     }
@@ -213,26 +228,17 @@ public class Field {
         boolean firstDiadonal = wonIn1stDiagonal(player, winner);
         boolean secondDiagonal = wonIn2ndDiagonal(player, winner);
 
-        if ((column || row || firstDiadonal || secondDiagonal) == true) {
-            return true;
+        if ((column || row || firstDiadonal || secondDiagonal)) {
+            winner = true;
         }
-
         return winner;
     }
+
 
     public void setWhereToPutChip(int whereToPutChip) {
         this.whereToPutChip = whereToPutChip;
     }
 
 }
-
-
-
-
-
-
-
-
-
 
 
