@@ -12,10 +12,8 @@ public class Game {
         currentPlayer = player1;
         selectedGameMode = selectGameMode();
         if (selectedGameMode == 1) {
-            //player1 = new HumanPlayer(1);
             player2 = new HumanPlayer(2);
         } else if (selectedGameMode == 2) {
-           // player1 = new HumanPlayer(1);
             player2 = new AiPlayer(2);
         } else if (selectedGameMode == 3) {
             player1 = new AiPlayer(1);
@@ -35,7 +33,7 @@ public class Game {
         startingTheGame();
         field.drawEmptyField();
         while (!winner) {
-            chosenNuber =  currentPlayer.turn();
+            chosenNuber = currentPlayer.turn();
             checkColumns = field.columnFullChecking(chosenNuber - 1);
             if (!checkColumns) {
                 field.puttingTheChip(currentPlayer.charXorO, chosenNuber - 1);
@@ -59,6 +57,7 @@ public class Game {
         int selectedGameMode;
         gameSelectionMesseges();
         String input = currentPlayer.inputCheck('1', '4');
+
         selectedGameMode = (int) input.charAt(0) - 48;
         return selectedGameMode;
     }
@@ -78,10 +77,10 @@ public class Game {
         winner = field.winnerCheck(charXorO);
         draw = field.fieldCheckOnDraw();
         if (winner) {
-           playerNumber = currentPlayer.playerNumberInMesseges();
+            playerNumber = currentPlayer.playerNumberInMesseges();
             System.out.println(playerNumber + " player is game winner !!!!");
         }
-        if (draw){
+        if (draw) {
             winner = true;
             System.out.println("Game over!!!");
             System.out.println("Draw!!!");

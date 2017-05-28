@@ -61,7 +61,7 @@ public class Field {
         return fullToGame;
     }
 
-    public boolean fieldCheckOnDraw () {
+    public boolean fieldCheckOnDraw() {
         boolean draw = false;
         int toBeFull = 0;
         for (int rows = 0; rows < ROWS; rows++) {
@@ -76,7 +76,6 @@ public class Field {
         }
         return draw;
     }
-
 
 
     private boolean fullToChecking(int toBeFull) {
@@ -106,7 +105,6 @@ public class Field {
             System.out.println("chose another column!!!");
         }
     }
-
 
 
     private boolean wonInColumns(char player, boolean winner) {
